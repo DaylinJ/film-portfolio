@@ -12,9 +12,9 @@ export default function HomePage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="home-main" id="films">
+      <main className="home-main" id="main-content" tabIndex={-1}>
         <h1 className="sr-only">Films by Daylin Jerome</h1>
-        <div className="film-grid">
+        <div className="film-grid" id="films" tabIndex={-1}>
           {films.map((film, index) => (
             <FilmTile key={film.slug} film={film} index={index} />
           ))}

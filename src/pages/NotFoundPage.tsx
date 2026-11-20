@@ -11,8 +11,8 @@ export default function NotFoundPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="not-found">
-        <p>That frame isn’t here.</p>
+      <main className="not-found" id="main-content" tabIndex={-1}>
+        <h1>That frame isn’t here.</h1>
         <Link to="/#films">Return to films</Link>
       </main>
       <SiteFooter />

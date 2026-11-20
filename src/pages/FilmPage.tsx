@@ -1,9 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
-import { films } from "../data/films";
+import { films, type Film } from "../data/films";
 import NotFoundPage from "./NotFoundPage";
+
+function FilmPlayer({ film }: { film: Film }) {
+  const [playerLoaded, setPlayerLoaded] = useState(false);
+  const [posterFailed, setPosterFailed] = useState(false);
+
+  return (
+    <div className="player-section">
+      <div className="video-player">
+        {playerLoaded ? (
+          <iframe
+            ref={(player) => player?.focus({ preventScroll: true })}
+            src={`https://www.youtube-nocookie.com/embed/${film.videoId}?rel=0`}
+            title={`${film.title} video player`}
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            className="player-poster"
+            type="button"
+            aria-label={`Load video player for ${film.title}`}
+            onClick={() => setPlayerLoaded(true)}
+          >
+            {!posterFailed && <img src={film.image} alt="" onError={() => setPosterFailed(true)} />}
+            <span className="play-icon" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+      <a className="external-watch" href={film.url} target="_blank" rel="noreferrer">
+        Watch on YouTube
+      </a>
+    </div>
+  );
+}
 
 export default function FilmPage() {
   const { slug } = useParams();
@@ -15,45 +50,18 @@ export default function FilmPage() {
 
   if (!film) return <NotFoundPage />;
 
-  const metadata = [film.type, film.year, film.role].filter(Boolean).join(" · ");
-  const embedUrl = film.videoId
-    ? `https://www.youtube-nocookie.com/embed/${film.videoId}?rel=0${film.startSeconds ? `&start=${film.startSeconds}` : ""}`
-    : undefined;
-
   return (
     <div className="page-shell film-page">
       <SiteHeader />
-      <main className="film-main">
+      <main className="film-main" id="main-content" tabIndex={-1}>
         <Link className="back-link" to="/#films">
-          ← Back to films
+          Back to films
         </Link>
         <header className="film-title-block">
           <h1>{film.title}</h1>
-          {metadata && <p>{metadata}</p>}
+          <p className="film-subtitle">{film.watchCredit ?? film.gridLabel}</p>
         </header>
-
-        {embedUrl ? (
-          <div className="player-section">
-            <div className="video-player">
-              <iframe
-                src={embedUrl}
-                title={`${film.title} video player`}
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
-            <a className="external-watch" href={film.url} target="_blank" rel="noreferrer">
-              {film.watchLabel ?? "Watch on YouTube"} ↗
-            </a>
-          </div>
-        ) : (
-          <div className="external-only">
-            <a className="external-watch" href={film.url} target="_blank" rel="noreferrer">
-              Watch on Instagram ↗
-            </a>
-          </div>
-        )}
+        <FilmPlayer key={film.slug} film={film} />
       </main>
       <SiteFooter />
     </div>

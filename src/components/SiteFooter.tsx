@@ -2,12 +2,13 @@ import { moreFilmsUrl } from "../data/films";
 
 export default function SiteFooter() {
   return (
-    <footer className="site-footer" id="contact">
+    <footer className="site-footer" id="contact" tabIndex={-1}>
       <p className="footer-about">
-        Daylin Jerome is a filmmaker and multimedia producer in Storrs, Connecticut — a UConn
-        computer science student and Assistant Multimedia Director at WHUS Radio.
+        I’m Daylin Jerome, a filmmaker and multimedia producer based in Storrs, Connecticut. I work
+        across cinematography, editing, sound, and live production. I study computer science at UConn
+        and serve as Assistant Multimedia Director at WHUS Radio.
       </p>
-      <div className="footer-links" aria-label="Contact links">
+      <nav className="footer-links" aria-label="Contact links">
         <a href="mailto:bec24004@uconn.edu">Email</a>
         <a href="https://www.instagram.com/daylin.jerome/" target="_blank" rel="noreferrer">
           Instagram
@@ -18,7 +19,7 @@ export default function SiteFooter() {
         <a href={moreFilmsUrl} target="_blank" rel="noreferrer">
           More films
         </a>
-      </div>
+      </nav>
       <p className="footer-meta">© {new Date().getFullYear()} Daylin Jerome</p>
     </footer>
   );

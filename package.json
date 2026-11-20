@@ -1,7 +1,8 @@
 {
-  "name": "figma-make-app",
+  "name": "film-portfolio",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.34.3",
   "type": "module",
   "scripts": {
     "dev": "vite",

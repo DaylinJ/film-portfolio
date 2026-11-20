@@ -19,3 +19,7 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+.DS_Store
+.wrangler/
+.dev.vars*
