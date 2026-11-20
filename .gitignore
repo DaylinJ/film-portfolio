@@ -23,3 +23,7 @@ logs/
 .DS_Store
 .wrangler/
 .dev.vars*
+
+# Local release packages and review artifacts
+*.zip
+/review/

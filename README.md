@@ -1,8 +1,18 @@
-# Daylin Jerome Film Portfolio
+# Daylin Jerome — Film Portfolio
 
-Eight selected films presented as a dark contact sheet. Each film has its own watch page with a YouTube player and direct watch link. Titles, full credits, descriptions, and video and image references live in `src/data/films.ts`.
+Eight selected films by filmmaker and multimedia producer Daylin Jerome, spanning short films, a music video, and collaborative school productions.
 
-![Desktop view of the film grid](docs/film-grid.webp)
+![Desktop film grid with eight stills and muted format captions on a dark background](docs/film-grid.webp)
+
+The responsive grid presents each film with a still and a short format label. Each title opens its own screening page with Daylin’s role, a click-to-load YouTube player, and a direct watch link. The film catalog lives in [`src/data/films.ts`](src/data/films.ts), which holds the order, titles, full credits, captions, and media references.
+
+<img src="docs/first-seek-mobile.webp" alt="Mobile FIRST SEEK screening page showing Daylin’s credits, the film poster, and the direct YouTube link" width="300">
+
+## Implementation
+
+The project started as a Figma Make export. The React and Vite implementation was refined for responsive layouts, shareable film URLs, a keyboard-accessible Contact panel, and local thumbnail and font assets. The production build was checked in the Cloudflare Pages emulator at desktop and phone widths, including direct navigation and refresh on the FIRST SEEK route.
+
+Project credits and original video destinations are listed in the film catalog. The locally hosted Inter, DM Sans, and Cormorant Garamond fonts include their [SIL Open Font License notices](public/fonts/).
 
 ## Local setup
 
@@ -13,26 +23,19 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the local URL printed by Vite. To check the production build locally, run:
-
-```sh
-pnpm build
-pnpm preview
-```
+To review the production build, run `pnpm build` followed by `pnpm preview`, then open the HTTP URL Vite prints.
 
 ## Cloudflare Pages
 
-For a future Git-connected Pages project, use these settings.
+In **Workers & Pages**, create a **Pages** project using **Connect to Git**. Select this repository and use the settings below.
 
 | Setting | Value |
 | --- | --- |
-| Production branch | `main` |
 | Framework preset | React (Vite) |
-| Root directory | Repository root |
+| Production branch | `main` |
+| Root directory | Leave blank to use the repository root |
 | Build command | `pnpm build` |
 | Build output directory | `dist` |
-| Build environment | `NODE_VERSION=22.23.5`, `PNPM_VERSION=10.34.3` |
+| Build environment variables | `NODE_VERSION=22.23.5`, `PNPM_VERSION=10.34.3` |
 
-For Direct Upload, use the contents of `dist/` or a ZIP with `index.html` at its root. Preserve the generated `_redirects` file. The build has no top-level `404.html`, so Pages can serve the React app for deep links. The app handles unknown routes.
-
-[Cloudflare Pages build settings](https://developers.cloudflare.com/pages/configuration/build-configuration/) · [Cloudflare Pages routing](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+Pages serves the React app for deep links through its default single-page app fallback. [Cloudflare Pages Git integration](https://developers.cloudflare.com/pages/get-started/git-integration/) · [Build settings](https://developers.cloudflare.com/pages/configuration/build-configuration/)
