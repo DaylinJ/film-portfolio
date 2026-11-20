@@ -28,7 +28,7 @@ function FilmPlayer({ film }: { film: Film }) {
             aria-label={`Load video player for ${film.title}`}
             onClick={() => setPlayerLoaded(true)}
           >
-            {!posterFailed && <img src={film.image} alt="" onError={() => setPosterFailed(true)} />}
+            {!posterFailed && <img src={film.poster ?? film.image} alt="" onError={() => setPosterFailed(true)} />}
             <span className="play-icon" aria-hidden="true" />
           </button>
         )}

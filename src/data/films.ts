@@ -11,6 +11,7 @@ export type Film = {
   url: string;
   videoId: string;
   image: string;
+  poster?: string;
 };
 
 export const films: Film[] = [
@@ -22,8 +23,8 @@ export const films: Film[] = [
     credits: "Writer, director, cinematographer, editor",
     description:
       "Created for PLK Youth’s Back-to-School Revival. Scripted scenes and live-event footage come together through voiceover, music, and sound design.",
-    gridLabel: "Promotional short",
-    watchCredit: "Director / Cinematographer",
+    gridLabel: "promotional short film",
+    watchCredit: "director / cinematographer / editor",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=YJAXNpS7pUA",
     videoId: "YJAXNpS7pUA",
@@ -34,7 +35,7 @@ export const films: Film[] = [
     title: "college town",
     type: "Short film",
     description: "An understated portrait of the landscapes and everyday scenes around Storrs.",
-    gridLabel: "Short film",
+    gridLabel: "short film",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=rIIhpmK9jiU",
     videoId: "rIIhpmK9jiU",
@@ -44,10 +45,10 @@ export const films: Film[] = [
     slug: "cancun",
     title: "cancún",
     type: "Cinematic travel short",
-    credits: "Editor and colorist",
+    credits: "Filmmaker, editor and colorist",
     description: "A visual postcard from Cancún built around scenery and composition.",
-    gridLabel: "Travel short",
-    watchCredit: "Editor / Colorist",
+    gridLabel: "travel short film",
+    watchCredit: "filmmaker / editor / colorist",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=1uxhBN8ZX2w",
     videoId: "1uxhBN8ZX2w",
@@ -61,8 +62,8 @@ export const films: Film[] = [
     credits: "Director, editor, contributing camera, music production, mixing and mastering",
     description:
       "A collaborative music video built around performance footage from multiple locations and edits timed to the track.",
-    gridLabel: "Music video",
-    watchCredit: "Director / Editor",
+    gridLabel: "music video",
+    watchCredit: "director / editor / music producer",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=ndBMtgpiw54",
     videoId: "ndBMtgpiw54",
@@ -71,9 +72,11 @@ export const films: Film[] = [
   {
     slug: "visions-of-the-night",
     title: "visions of the night",
-    type: "Experimental short",
+    type: "Experimental short film",
+    credits: "Director, cinematographer, editor",
     description: "An experimental film inspired by the Book of Job.",
-    gridLabel: "Experimental short",
+    gridLabel: "experimental short film",
+    watchCredit: "director / cinematographer / editor",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=AddHV-lp348",
     videoId: "AddHV-lp348",
@@ -87,8 +90,8 @@ export const films: Film[] = [
     credits: "Co-director, co-producer, writer, editor",
     description:
       "A 16-minute scripted school film built around scripted performances, parallel scenes, dialogue, and sound cues.",
-    gridLabel: "School film",
-    watchCredit: "Co-director / Editor",
+    gridLabel: "school film",
+    watchCredit: "co-director / editor",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=-0L7QvGCwj0",
     videoId: "-0L7QvGCwj0",
@@ -102,8 +105,8 @@ export const films: Film[] = [
     credits: "Co-producer, camera team, editor",
     description:
       "An interview-led promo for the Christian Heritage School production, cut across multiple camera angles.",
-    gridLabel: "Cast promo",
-    watchCredit: "Co-producer / Editor",
+    gridLabel: "cast interviews",
+    watchCredit: "co-producer / editor",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=uSFaBVOqn5E",
     videoId: "uSFaBVOqn5E",
@@ -112,13 +115,16 @@ export const films: Film[] = [
   {
     slug: "think-on-these-things",
     title: "think on these things.",
-    type: "Microfilm",
+    type: "Vertical short film",
+    credits: "Director, cinematographer, editor",
     description: "A series of locked-off beach compositions inspired by Philippians 4:8.",
-    gridLabel: "Microfilm",
+    gridLabel: "vertical short film",
+    watchCredit: "director / cinematographer / editor",
     provider: "youtube",
     url: "https://www.youtube.com/watch?v=Uwsr6Hg0dKA",
     videoId: "Uwsr6Hg0dKA",
-    image: "/images/Uwsr6Hg0dKA.jpg",
+    image: "/images/think-on-these-things-v1.webp",
+    poster: "/images/Uwsr6Hg0dKA.jpg",
   },
 ];
 

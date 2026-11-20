@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ContactPopover from "./ContactPopover";
 
 export default function SiteHeader() {
   return (
@@ -7,12 +8,11 @@ export default function SiteHeader() {
         <Link className="header-link header-films" to="/#films">
           Films
         </Link>
-        <Link className="site-name" to="/" aria-label="Daylin Jerome">
-          DAYLIN JEROME
+        <Link className="site-name" to="/" aria-label="Directed by Daylin Jerome">
+          <span className="site-prefix">Directed by</span>
+          <span>DAYLIN JEROME</span>
         </Link>
-        <Link className="header-link header-contact" to="#contact">
-          Contact
-        </Link>
+        <ContactPopover />
       </nav>
     </header>
   );

@@ -27,6 +27,7 @@
   --off-white: #e7e5df;
   --muted: #969a9d;
   --line: #202328;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "DM Sans", system-ui, sans-serif;
   color: var(--off-white);
@@ -88,10 +89,12 @@ html {
 }
 
 .site-header {
+  --header-inset: clamp(20px, 4vw, 68px);
+  --header-height: 62px;
   position: relative;
   z-index: 10;
-  min-height: 62px;
-  padding: 0 clamp(20px, 4vw, 68px);
+  min-height: var(--header-height);
+  padding: 0 var(--header-inset);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -100,10 +103,19 @@ html {
 }
 
 .site-name {
+  gap: 0.55rem;
   font-size: 1.0625rem;
   font-weight: 500;
   letter-spacing: 0.11em;
   line-height: 1;
+}
+
+.site-prefix {
+  color: #b8b6b0;
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: normal;
 }
 
 .header-link {
@@ -151,6 +163,139 @@ html {
   color: #ffffff;
   text-decoration: underline;
   text-decoration-thickness: 1px;
+}
+
+.contact-trigger {
+  anchor-name: --contact-trigger;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    transform 120ms var(--ease-out);
+}
+
+.contact-trigger:active {
+  transform: scale(0.97);
+}
+
+.contact-panel {
+  position: fixed;
+  inset: var(--header-height) var(--header-inset) auto auto;
+  width: min(21rem, calc(100% - 2 * var(--header-inset)));
+  max-height: calc(100dvh - var(--header-height) - 1rem);
+  overflow: auto;
+  margin: 0;
+  padding: 1.125rem;
+  border: 1px solid #34363a;
+  border-radius: 0.625rem;
+  background: rgb(17 19 22 / 96%);
+  color: var(--off-white);
+  font-family: var(--sans);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 58%);
+  opacity: 0;
+  transform: translateY(-4px) scale(0.97);
+  transform-origin: calc(100% - 2rem) top;
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 180ms var(--ease-out),
+    display 180ms allow-discrete,
+    overlay 180ms allow-discrete;
+}
+
+@supports (top: anchor(bottom)) {
+  .contact-panel {
+    position-anchor: --contact-trigger;
+    top: calc(anchor(bottom, var(--header-height)) + 6px);
+    right: anchor(right, var(--header-inset));
+  }
+}
+
+.contact-panel:popover-open {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .contact-panel:popover-open {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+}
+
+.contact-panel[data-instant] {
+  transition-duration: 0s;
+}
+
+.contact-panel h2 {
+  margin: 0 3rem 0.875rem 0;
+  font: 500 2rem/1 var(--serif);
+  letter-spacing: -0.02em;
+}
+
+.contact-panel svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: none;
+}
+
+.contact-email,
+.contact-socials a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid #34363a;
+  border-radius: 0.375rem;
+}
+
+.contact-panel :is(a, button):focus-visible {
+  outline-offset: 2px;
+}
+
+.contact-email {
+  background: rgb(255 255 255 / 5%);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.contact-email span {
+  overflow-wrap: anywhere;
+}
+
+.contact-socials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: #c5c4c0;
+  font-size: 0.8125rem;
+}
+
+.contact-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 0.375rem;
+  color: #c5c4c0;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-panel :is(a, button):hover {
+    color: #fff;
+    background: rgb(255 255 255 / 9%);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .contact-panel {
+    background: #111316;
+    border-color: var(--muted);
+  }
 }
 
 :is(a, button, iframe):focus-visible {
@@ -256,7 +401,7 @@ html {
 
 .film-subtitle {
   color: var(--muted);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -349,7 +494,7 @@ html {
 
 .film-title-block .film-subtitle {
   margin: 12px auto 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .player-section {
@@ -359,6 +504,7 @@ html {
 
 .video-player {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   min-height: 200px;
   overflow: hidden;
@@ -472,8 +618,8 @@ html {
 
 @media (max-width: 620px) {
   .site-header {
-    min-height: 54px;
-    padding: 0 16px;
+    --header-height: 54px;
+    --header-inset: 16px;
     grid-template-columns: 1fr auto auto;
     gap: 15px;
   }
@@ -482,7 +628,15 @@ html {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
     font-size: 0.9375rem;
+  }
+
+  .site-prefix {
+    font-size: 1rem;
   }
 
   .header-films {
@@ -543,6 +697,7 @@ html {
     transition: none !important;
   }
 
+  .contact-trigger:active,
   .film-tile a:is(:hover, :active, :focus-visible) .film-frame img {
     transform: none;
   }
