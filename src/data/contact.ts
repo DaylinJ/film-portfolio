@@ -1,5 +1,5 @@
 export const contact = {
-  email: "bec24004@uconn.edu",
+  email: "daylinemail@gmail.com",
   instagram: "https://www.instagram.com/daylin.jerome/",
   youtube: "https://www.youtube.com/@DaylinJerome",
 };
