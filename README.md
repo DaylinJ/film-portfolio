@@ -2,6 +2,8 @@
 
 Eight selected films by filmmaker and multimedia producer Daylin Jerome, spanning short films, a music video, and collaborative school productions.
 
+[**View the live film portfolio**](https://daylinjerome.pages.dev/)
+
 ![Desktop film grid with eight stills and muted format captions on a dark background](docs/film-grid.webp)
 
 The responsive grid presents each film with a still and a short format label. Each title opens its own screening page with Daylin’s role, a click-to-load YouTube player, and a direct watch link. The film catalog lives in [`src/data/films.ts`](src/data/films.ts), which holds the order, titles, full credits, captions, and media references.
